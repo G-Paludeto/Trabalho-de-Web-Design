@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bea Duarte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    color: rgb(197, 39, 0);      /* cor do preenchimento da letra */
+    font-size: 3rem;
+    -webkit-text-stroke: 2px rgb(48, 15, 0); /* cor e largura da borda */
+    
+}
+
+header p {
+    font-family: 'Lora', serif;
+    color: #eee;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 20px auto 0;
+    line-height: 1.6;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+    position: relative;
+    margin-top: 90px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Fundo com gradiente escuro no final */
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(18,18,18,0) 60%, rgba(18,18,18,1) 100%), 
+                url('Imagens/bea.jpg') center/cover no-repeat;
+    z-index: 0;
+}
+
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    background: #111;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+
+.hamburger {
+    width: 35px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger span {
+    display: block;
+    height: 4px;
+    background: white;
+    margin: 6px 0;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+/* ANIMAÇÃO DO ÍCONE QUANDO ATIVO */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -7px);
+}
+
+/* MENU LATERAL */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100vh;
+    background: #1a1a1a;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    padding-top: 80px;
+    transition: 0.4s ease;
+    z-index: 1002;
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu a {
+    display: block;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.side-menu a:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* FUNDO ESCURECIDO */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: #1c1c1c;
+    color: #888;
+    margin-top: 50px;
+}
+    </style>
+</head>
+<body>
+
+<!-- FUNDO ESCURECIDO -->
+<div id="overlay"></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Conheça Bea Duarte</h2>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<!-- MENU LATERAL -->
+<div id="sideMenu" class="side-menu">
+    <a href="album.html">Álbuns</a>
+</div>
+
+<script>
+const menu = document.getElementById("sideMenu");
+const overlay = document.getElementById("overlay");
+const hamburger = document.getElementById("hamburger");
+
+function toggleMenu() {
+    menu.classList.toggle("open");
+    overlay.classList.toggle("active");
+    hamburger.classList.toggle("active");
+    document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "auto";
+}
+
+hamburger.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+document.querySelectorAll(".side-menu a").forEach(link => {
+    link.addEventListener("click", toggleMenu);
+});
+</script>
+
+<header id="header">
+    <div class="header-bg"></div>
+    <h1>Algumas Músicas da Cantora:</h1>
+</header>
+
+<div class="carousel-container">
+
+    <button class="prev">&#10094;</button>
+
+    <div class="carousel-wrapper">
+        <div class="carousel">
+
+            <!-- CLONE DO ÚLTIMO -->
+            <div class="slide last-clone">
+                <img src="Imagens/album10.jpg">
+                <div class="caption">Bruxa</div>
+            </div>
+
+            <!-- SLIDES -->
+            <div class="slide"><img src="Imagens/album1.jpg"><div class="caption">Lilith</div></div>
+            <div class="slide"><img src="Imagens/album2.jpg"><div class="caption">Mulheres que Correm</div></div>
+            <div class="slide"><img src="Imagens/album3.jpg"><div class="caption">Ignorância</div></div>
+            <div class="slide"><img src="Imagens/album4.jpg"><div class="caption">Dell'arte (Extended)</div></div>
+            <div class="slide"><img src="Imagens/album5.jpg"><div class="caption">Máscaras</div></div>
+            <div class="slide"><img src="Imagens/album6.jpg"><div class="caption">Mar</div></div>
+            <div class="slide"><img src="Imagens/album7.jpg"><div class="caption">Tom</div></div>
+            <div class="slide"><img src="Imagens/album8.jpg"><div class="caption">Supostamente</div></div>
+            <div class="slide"><img src="Imagens/album9.jpg"><div class="caption">Mensagem</div></div>
+            <div class="slide"><img src="Imagens/album10.jpg"><div class="caption">Bruxa</div></div>
+
+            <!-- CLONE DO PRIMEIRO -->
+            <div class="slide first-clone">
+                <img src="Imagens/album1.jpg">
+                <div class="caption">Lilith</div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="next">&#10095;</button>
+
+    <div class="carousel-dots"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+<footer>
+    &copy; 2025 Bea Duarte - Todos os direitos reservados
+</footer>
+
+</body>
+</html>
